@@ -5,8 +5,8 @@ from datetime import datetime
 
 class Weather_hist:
     def __init__(self):
-        self.data_hist = pd.read_csv('data_weather.csv')
-        self.data_places = pd.read_csv('data_places.csv')
+        self.data_hist = pd.read_csv('data/data_weather.csv')
+        self.data_places = pd.read_csv('data/data_places.csv')
 
     def get_wether(self, point_id, start, end, point):
         data = Daily(point, start, end)
@@ -17,7 +17,7 @@ class Weather_hist:
         return data
 
     def get_point_id(self, name):
-        places = pd.read_csv('data_places.csv')
+        places = pd.read_csv('data/data_places.csv')
         point_id = places[places['name_ru'].str.contains(name, case = False)]['geonameid'].unique()[0]
         return point_id
 
@@ -31,12 +31,3 @@ class Weather_hist:
         return pd.concat(list(new_data))
 
 
-# x = Weather_hist()
-#
-# new_data = x.update_bd()
-# print(x.data_hist.shape)
-# new_data = pd.concat([x.data_hist, new_data])
-# print(new_data.columns)
-# print(new_data.shape)
-#
-# new_data.to_csv('updated_data.csv', index=False)
