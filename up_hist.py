@@ -6,6 +6,7 @@ from datetime import datetime
 class Weather_hist:
     def __init__(self):
         self.data_hist = pd.read_csv('data/data_weather.csv')
+        self.data_hist = self.data_hist.drop_duplicates()
         self.data_places = pd.read_csv('data/data_places.csv')
 
     def get_wether(self, point_id, start, end, point):
